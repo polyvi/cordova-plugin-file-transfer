@@ -20,7 +20,7 @@
 */
 
 var argscheck = require('cordova/argscheck'),
-    exec = require('cordova/exec'),
+    exec = require('./FileTransferExec'),
     FileTransferError = require('./FileTransferError'),
     ProgressEvent = require('org.apache.cordova.file.ProgressEvent');
 
