@@ -44,7 +44,14 @@ function FileTransferExec() {
         var source = actionArgs[0];
         var target = actionArgs[1];
         var functionName = service + '.' + action;
-        var result = workspace.checkWorkspace(privateModule.appWorkspace(), target, functionName);
+        var basePath = privateModule.appWorkspaceFullPath(); //For backwards compatibilty
+        if(-1 != target.indexOf('://')){
+            //FIXME:Currently we support only 'persistent'
+            var fs = new FileSystem('persistent');
+            basePath = fs.__format__(privateModule.appWorkspace());
+        }
+
+        var result = workspace.checkWorkspace(basePath, target, functionName);
         if (!result){
             var error = new FileTransferError(FileTransferError.FILE_NOT_FOUND_ERR,
                                               source,

@@ -226,7 +226,7 @@ describe('FileTransfer workspace', function() {
                 ft.onprogress = function(e) {
                     lastProgressEvent = e;
                 };
-                ft.download(remoteFile, root.fullPath + "/../workspace/" + localFileName, downloadWin, fail);
+                ft.download(remoteFile, root.toURL() + "/../workspace/" + localFileName, downloadWin, fail);
             });
 
             waitsForAny(downloadWin, fail);
@@ -250,7 +250,7 @@ describe('FileTransfer workspace', function() {
                 ft.onprogress = function(e) {
                     lastProgressEvent = e;
                 };
-                ft.download(remoteFile, root.fullPath + "/../workspace/download/" + localFileName, downloadWin, fail);
+                ft.download(remoteFile, root.toURL() + "/../workspace/download/" + localFileName, downloadWin, fail);
             });
 
             waitsForAny(downloadWin, fail);
