@@ -20,3 +20,6 @@
 -->
 # Release Note X
 
+
+### 0.3.2 Wed Jan 08 2014 15:14:40 GMT+0800 (CST)
+ *  added releasenotex.md
