@@ -41,16 +41,24 @@ function FileTransferExec() {
     }
 
     if("download" === action){
+        var needCheckWorkspace = true;
         var source = actionArgs[0];
         var target = actionArgs[1];
-        var functionName = service + '.' + action;
-        var result = workspace.checkWorkspace(privateModule.appWorkspace(), target, functionName);
-        if (!result){
-            var error = new FileTransferError(FileTransferError.FILE_NOT_FOUND_ERR,
-                                              source,
-                                              target);
-            failCallback(error);
-            return;
+        if('ios' === require('cordova/platform').id){
+            if(workspace.strStartsWith(target, 'assets-library://')){
+                needCheckWorkspace = false;
+            }
+        }
+        if(needCheckWorkspace){
+            var functionName = service + '.' + action;
+            var ret = workspace.checkWorkspace(privateModule.appWorkspace(), target, functionName);
+            if (!ret){
+                var error = new FileTransferError(FileTransferError.FILE_NOT_FOUND_ERR,
+                                                  source,
+                                                  target);
+                failCallback(error);
+                return;
+            }
         }
     }
     exec.apply(this, arguments);
