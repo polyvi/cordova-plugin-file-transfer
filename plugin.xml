@@ -18,10 +18,6 @@
         <clobbers target="window.FileTransfer" />
     </js-module>
 
-    <js-module src="www/FileTransferExec.js" name="FileTransferExec">
-        <clobbers target="window.FileTransferExec" />
-    </js-module>
-
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
