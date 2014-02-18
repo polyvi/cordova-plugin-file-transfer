@@ -61,7 +61,7 @@ import org.json.JSONObject;
 import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
-import android.webkit.CookieManager;
+import com.amazon.android.webkit.AmazonCookieManager;
 
 public class FileTransfer extends CordovaPlugin {
 
@@ -158,8 +158,11 @@ public class FileTransfer extends CordovaPlugin {
             return updateBytesRead(super.read());
         }
 
-        // Note: FilterInputStream delegates read(byte[] bytes) to the below method,
-        // so we don't override it or else double count (CB-5631).
+        @Override
+        public int read(byte[] buffer) throws IOException {
+            return updateBytesRead(super.read(buffer));
+        }
+
         @Override
         public int read(byte[] bytes, int offset, int count) throws IOException {
             return updateBytesRead(super.read(bytes, offset, count));
@@ -318,7 +321,7 @@ public class FileTransfer extends CordovaPlugin {
                     conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + BOUNDARY);
 
                     // Set the cookies on the response
-                    String cookie = CookieManager.getInstance().getCookie(target);
+                    String cookie = AmazonCookieManager.getInstance().getCookie(target);
                     if (cookie != null) {
                         conn.setRequestProperty("Cookie", cookie);
                     }
@@ -737,8 +740,8 @@ public class FileTransfer extends CordovaPlugin {
         
                         connection.setRequestMethod("GET");
         
-                        // TODO: Make OkHttp use this CookieManager by default.
-                        String cookie = CookieManager.getInstance().getCookie(sourceUri.toString());
+                        // TODO: Make OkHttp use this AmazonCookieManager by default.
+                        String cookie = AmazonCookieManager.getInstance().getCookie(sourceUri.toString());
                         if(cookie != null)
                         {
                             connection.setRequestProperty("cookie", cookie);
@@ -757,10 +760,8 @@ public class FileTransfer extends CordovaPlugin {
                         if (connection.getContentEncoding() == null || connection.getContentEncoding().equalsIgnoreCase("gzip")) {
                             // Only trust content-length header if we understand
                             // the encoding -- identity or gzip
-                            if (connection.getContentLength() != -1) {
-                                progress.setLengthComputable(true);
-                                progress.setTotal(connection.getContentLength());
-                            }
+                            progress.setLengthComputable(true);
+                            progress.setTotal(connection.getContentLength());
                         }
                         inputStream = getInputStream(connection);
                     }
