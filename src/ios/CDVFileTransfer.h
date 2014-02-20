@@ -57,6 +57,7 @@ extern NSString* const kOptionsKeyCookie;
 @end
 
 @class CDVFileTransferEntityLengthRequest;
+@class CDVFile;
 
 @interface CDVFileTransferDelegate : NSObject {}
 
@@ -79,5 +80,6 @@ extern NSString* const kOptionsKeyCookie;
 @property (nonatomic, assign) BOOL trustAllHosts;
 @property (strong) NSFileHandle* targetFileHandle;
 @property (nonatomic, strong) CDVFileTransferEntityLengthRequest* entityLengthRequest;
+@property (nonatomic, strong) CDVFile *filePlugin;
 
 @end;
