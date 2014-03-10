@@ -58,7 +58,6 @@ extern NSString* const kOptionsKeyCookie;
 @end
 
 @class CDVFileTransferEntityLengthRequest;
-@class CDVFile;
 
 @interface CDVFileTransferDelegate : NSObject {}
 
