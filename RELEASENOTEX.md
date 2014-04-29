@@ -134,3 +134,20 @@
  *  Revert "Move filetransfer workspace-related tests into its own test file 'filetransfer-workspace.tests.js'"
  *  Revert "Rename 'filetransfer-workspace.tests.js' to 'filetransfer.xface.tests.js'"
  *  batch modify .reviewboard
+
+
+## 0.4.4 (Tue Apr 29 2014)
+
+
+ *  CB-6452 Updated version and RELEASENOTES.md for release 0.4.3
+ *  CB-6460: Update license headers
+ *  CB-6422 [windows8] use cordova/exec/proxy
+ *  iOS: Fix error where files were not removed on abort
+ *  [CB-5175] CDVFileTransfer asynchronous download (Fixes issue 24)
+ *  [ios] Cast id references to NSURL to avoid compiler warnings (Fixes: apache/cordova-plugin-file-transferissue 18)
+ *  [ios] Cleanup extra semicolons
+ *  CB-6212 iOS: fix warnings compiled under arm64 64-bit
+ *  Upleveled from android port with following commits: 3c1ff16 Andrew Grieve - CB-5762 android: Fix lengthComputable set wrong for gzip downloads 8374b3d Colin Mahoney - CB-5631 Removed SimpleTrackingInputStream.read(byte[] buffer) 6f91ac3 Bas Bosman - CB-4907 Close stream when we're finished with it 651460f Christoph Neumann - CB-6000 Nginx rejects Content-Type without a space before "boundary". 35f80e4 Ian Clelland - CB-6050: Use instance method on actual file plugin object to get FileEntry to return on download
+ *  CB-6114 Incremented plugin version on dev branch.
+ *  Upleveled from android port with following commits: 3c1ff16 Andrew Grieve - CB-5762 android: Fix lengthComputable set wrong for gzip downloads 8374b3d Colin Mahoney - CB-5631 Removed SimpleTrackingInputStream.read(byte[] buffer) 6f91ac3 Bas Bosman - CB-4907 Close stream when we're finished with it 651460f Christoph Neumann - CB-6000 Nginx rejects Content-Type without a space before "boundary". 35f80e4 Ian Clelland - CB-6050: Use instance method on actual file plugin object to get FileEntry to return on download
+ *  Incremented plugin version on dev branch to 0.4.4-dev
